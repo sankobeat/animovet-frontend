@@ -17,10 +17,7 @@ const fetcher = async (url) => {
 export default function ReservationDetails() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, error } = useSWR(
-    id ? `http://localhost:5000/api/reservation/${id}` : null,
-    fetcher
-  );
+  const { data, error } = useSWR(id ? `/api/reservation/${id}` : null, fetcher);
 
   const componentRef = useRef();
 

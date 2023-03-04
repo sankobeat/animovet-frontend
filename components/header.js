@@ -88,7 +88,7 @@ function Header() {
                       }}
                       className="align-self-center"
                     >
-                      Admin
+                      Dashboard
                     </Dropdown.Item>
                   ) : (
                     ""

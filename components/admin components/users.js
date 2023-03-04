@@ -93,7 +93,7 @@ export default function Users() {
                   )}
                 </td>
                 <td>
-                  {user.isAdmin ? (
+                  {user.isSuperAdmin ? (
                     <button
                       className="back-red"
                       onClick={() => makeAdmin(user._id)}

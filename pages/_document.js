@@ -28,7 +28,7 @@ export default function Document() {
           integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
           crossorigin="anonymous"
         ></script>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/animovet-icon.png" />
       </Head>
       <body>
         <Main />

@@ -51,11 +51,11 @@ function Profile() {
         `/api/user//deleteReservation/${id}`,
         config
       );
-      console.log(data);
+
       toast.success(data);
-      mutate("http://localhost:5000/api/user/profile");
+      mutate("/api/user/profile");
     } catch (error) {
-      console.log(error);
+      toast.error(error.data.response.message);
     }
   };
 
