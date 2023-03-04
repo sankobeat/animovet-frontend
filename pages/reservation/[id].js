@@ -52,12 +52,12 @@ export default function ReservationDetails() {
       <Container ref={componentRef}>
         <Row className="mt-5 d-flex justify-content-between">
           <Col md={2} className="w-25">
-            <h3 className="color-blue bolder">ANIMOVET.</h3>
+            <h3 className="color-blue bolder">UMC VET</h3>
             <p className="my-0 light-text">
-              Oued El Alleug, Rond Point, Blida.
+              Rond point d' orange, Oued el Alleug, Algeria.
             </p>
-            <p className="my-0 light-text">info@animovet.com.</p>
-            <p className="my-0 light-text">(025)685215</p>
+            <p className="my-0 light-text">umcveterinaire@gmail.com</p>
+            <p className="my-0 light-text">0541 81 07 06</p>
           </Col>
           <Col md={2} className="w-25">
             <h3 className="color-blue bolder">
@@ -69,7 +69,7 @@ export default function ReservationDetails() {
           </Col>
         </Row>
         <Row>
-          <h1 className="bold text-center my-5">RESERVATION DETAILS</h1>
+          <h1 className="bold text-center my-5">Détails</h1>
         </Row>
         <Row className="text-center">
           <h3 className="color-blue bolder">
