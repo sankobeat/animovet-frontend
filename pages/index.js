@@ -107,7 +107,12 @@ export default function Home() {
               votre famille, c'est pourquoi nous offrons une gamme de services
               adaptés pour répondre à leurs besoins individuels.
             </p>
-            <button className="back-orange align-self-center rounded my-3">
+            <button
+              className="back-orange align-self-center rounded my-3"
+              onClick={() => {
+                router.push("/about");
+              }}
+            >
               En savoir plus!
             </button>
           </Col>
