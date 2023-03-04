@@ -218,7 +218,7 @@ export default function Home() {
         </Row>
       </Container>
 
-      <Container className="back-reserve " fluid>
+      <Container fluid>
         <Container className="h-auto">
           <Row>
             <Col

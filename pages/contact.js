@@ -102,21 +102,21 @@ export default function Contact() {
                 <strong className="me-4 color-orange">
                   <FaMapMarkerAlt size={20} />
                 </strong>
-                Oued El Alleug, Rond Point, Blida.
+                Rond point d' orange, Oued el Alleug, Algeria.
               </span>
               <span className="my-3 d-flex justify-content-center align-items-center">
                 <strong className="me-4 color-orange">
                   {" "}
                   <FaEnvelope size={20} />
                 </strong>{" "}
-                info@animovet.com.
+                umcveterinaire@gmail.com
               </span>
               <span className="my-3 d-flex justify-content-center align-items-center">
                 <strong className="me-4 color-orange">
                   {" "}
                   <FaPhone size={20} />{" "}
                 </strong>{" "}
-                025143143.
+                0541 81 07 06
               </span>
               <span className="my-3 d-flex justify-content-center align-items-center">
                 <strong className="me-4 color-orange">
@@ -129,7 +129,7 @@ export default function Contact() {
               <span className="my-4 text-center">
                 <strong className="color-orange">Social Media</strong>
                 <div className="d-flex justify-content-evenly mt-3">
-                  <Link href="#">
+                  <Link href="https://www.facebook.com/profile.php?id=100063532615407">
                     <FaFacebook size={32} />
                   </Link>
                   <Link href="#">

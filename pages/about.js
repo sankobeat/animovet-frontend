@@ -13,7 +13,7 @@ export default function About() {
             className="d-flex flex-column justify-content-between align-items-center flex-colmun"
           >
             <h1 className="text-start large-text p-2 color-blue">
-              Qui est Animovet ?
+              Qui est UMC VET?
             </h1>
             <p className="light-text text-start mb-3 w-100">
               ANIMOVET est un fournisseur de soins de santé pour animaux de
