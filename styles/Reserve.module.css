@@ -1,0 +1,21 @@
+.reserve_section {
+  background-color: var(--light-cyan);
+}
+
+.reserve {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.reserve_left {
+  flex: 1;
+}
+.reserve_left h2 {
+  color: white;
+}
+.reserve_right {
+  text-align: center;
+  align-self: center;
+  flex: 1;
+}

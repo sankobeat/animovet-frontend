@@ -1,0 +1,94 @@
+.reserve_page {
+}
+
+.active {
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+
+  color: black;
+  text-align: center;
+  font-weight: 900;
+}
+
+.not_active {
+  font-size: 2rem;
+  background-color: red;
+  color: white;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
+  font-weight: 900;
+}
+
+.date_control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.workContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 500px;
+  height: auto;
+}
+
+.work_hours {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: var(--light-cyan);
+  padding: 1rem 1.75rem;
+  width: 20px;
+  height: 15px;
+  font-size: 1rem;
+}
+
+.pet_image_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.text {
+  margin: 1rem 0;
+}
+.text h1 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 90px;
+}
+
+.text p {
+  text-align: center;
+  text-transform: uppercase;
+  color: red;
+}
+
+.pet_image {
+  width: 50%;
+  height: auto;
+}
+
+.formWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 7rem auto;
+}
+@media only screen and (max-width: 768px) {
+  .text h1 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+  }
+}
