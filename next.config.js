@@ -1,11 +1,8 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const dotenv = require("dotenv");
-
-dotenv.config();
 
 module.exports = {
   reactStrictMode: true,
-  distDir: "out",
+
   async rewrites() {
     return [
       {
