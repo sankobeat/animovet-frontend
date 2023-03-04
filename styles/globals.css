@@ -78,6 +78,20 @@ section {
   background-color: #fbfbfb;
 }
 
+.back-landing {
+  background-image: url("/landing-back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.back-reserve {
+  background-image: url("/reserve-back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .dark-border {
   border-color: var(--dark-orange);
 }
@@ -110,7 +124,6 @@ button {
   font-size: 3rem;
   cursor: pointer;
   transition: 0.5s all ease-in-out;
-
   color: var(--white);
 }
 
@@ -152,8 +165,8 @@ input::-webkit-inner-spin-button {
   color: #f55c47;
 }
 
-.text-blue {
-  color: var(--dark-blue);
+.color-white {
+  color: var(--white);
 }
 
 .large-text {

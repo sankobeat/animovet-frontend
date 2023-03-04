@@ -89,10 +89,10 @@ export default function Reserve() {
       }
     } else {
       try {
-        const { data } = await axios.post(
-          "http://localhost:5000/api/reservation/register",
-          { ...form, reservedDate: theDate }
-        );
+        const { data } = await axios.post("/api/reservation/register", {
+          ...form,
+          reservedDate: theDate,
+        });
 
         router.push(`/reservation/${data?._id}`);
       } catch (error) {

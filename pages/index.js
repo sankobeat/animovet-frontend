@@ -90,37 +90,41 @@ export default function Home() {
         <title>Animovet</title>
       </Head>
       <Header />
-      <Container className="d-flex align-items-center pt-5 h-auto">
-        <Row className="pt-5 h-auto">
-          <Col
-            md={5}
-            className="d-flex flex-column justify-content-center align-items-center"
-          >
-            <h1 className="align-self-center large-text p-2">ANIMOVET.</h1>
-            <p className="light-text align-self-start my-3 w-100">
-              Bienvenue chez ANIMOVET, votre prestataire de soins vétérinaires
-              de confiance pour les animaux de compagnie de haute qualité. Notre
-              équipe de vétérinaires expérimentés et de professionnels de la
-              santé animale est dédiée à s'assurer que vos amis à fourrure
-              reçoivent les meilleurs soins possibles. Chez ANIMOVET, nous
-              comprenons que les animaux de compagnie font partie intégrante de
-              votre famille, c'est pourquoi nous offrons une gamme de services
-              adaptés pour répondre à leurs besoins individuels.
-            </p>
-            <button
-              className="back-orange align-self-center rounded my-3"
-              onClick={() => {
-                router.push("/about");
-              }}
+      <Container fluid className="back-landing">
+        <Container className="d-flex align-items-center pt-5 h-auto">
+          <Row>
+            <Col
+              md={12}
+              className="d-flex flex-column justify-content-center align-items-center py-5"
             >
-              En savoir plus!
-            </button>
-          </Col>
-          <Col md={7} className="text-center">
-            <Image src="/landing.png" height="auto" fluid />
-          </Col>
-        </Row>
+              <Image src="/utc-logo.png" style={{ height: "350px" }} />
+              <h1 className="align-self-center large-text p-2 color-white">
+                UMC Vet.
+              </h1>
+              <p className="light-text align-self-start text-center my-3 w-100 color-white">
+                Bienvenue chez ANIMOVET, votre prestataire de soins vétérinaires
+                de confiance pour les animaux de compagnie de haute qualité.
+                Notre équipe de vétérinaires expérimentés et de professionnels
+                de la santé animale est dédiée à s'assurer que vos amis à
+                fourrure reçoivent les meilleurs soins possibles. Chez ANIMOVET,
+                nous comprenons que les animaux de compagnie font partie
+                intégrante de votre famille, c'est pourquoi nous offrons une
+                gamme de services adaptés pour répondre à leurs besoins
+                individuels.
+              </p>
+              <button
+                className="back-orange align-self-center rounded my-3"
+                onClick={() => {
+                  router.push("/about");
+                }}
+              >
+                En savoir plus!
+              </button>
+            </Col>
+          </Row>
+        </Container>
       </Container>
+
       <Container>
         <Row className="py-5 d-flex justify-content-evenly align-items-center">
           <Col className="d-flex justify-content-center align-items-center flex-column">
@@ -163,10 +167,13 @@ export default function Home() {
               className="d-flex justify-content-between align-items-center align-self-start flex-column text-white w-100 p-3"
             >
               <GiTripleNeedle size={48} className="mb-2" />
-              <span className="text-center medium-text">
-                Gardez votre animal en bonne santé avec des vaccinations
-                régulières pour le protéger contre les maladies infectieuses
-                courantes.
+              <span className="text-start light-text">
+                Nous offrons un service de vaccination pour les animaux de
+                compagnie pour les protéger contre les maladies. Nous proposons
+                des programmes de vaccination personnalisés pour répondre aux
+                besoins individuels de chaque animal. Nos vétérinaires peuvent
+                vous conseiller sur le calendrier de vaccination approprié pour
+                votre animal de compagnie.
               </span>
             </Col>
             <Col
@@ -174,10 +181,12 @@ export default function Home() {
               className="d-flex justify-content-between align-items-center align-self-start flex-column text-white w-100 p-3"
             >
               <RiServiceFill size={48} className="mb-2" />
-              <span className="text-center medium-text">
-                Service d'urgence 24h/24 et 7j/7 pour les besoins médicaux
-                urgents, avec un diagnostic immédiat, un traitement et des soins
-                continus si nécessaire.
+              <span className="text-start light-text">
+                Nous offrons des conseils en nutrition pour les animaux de
+                compagnie afin de les aider à maintenir une alimentation saine
+                et équilibrée. Notre équipe de professionnels peut vous aider à
+                choisir les bons aliments pour votre animal de compagnie en
+                fonction de son âge, de sa race et de ses besoins alimentaires.
               </span>
             </Col>
             <Col
@@ -185,10 +194,11 @@ export default function Home() {
               className="d-flex justify-content-between align-items-center align-self-start flex-column text-white w-100 p-3"
             >
               <RiEyeFill size={48} className="mb-2" />
-              <span className="text-center medium-text">
-                Examens réguliers, tests de diagnostic et conseils sur la
-                nutrition et l'exercice pour surveiller et maintenir la santé de
-                votre animal.
+              <span className="text-start light-text">
+                Notre équipe de professionnels expérimentés propose des
+                interventions chirurgicales de qualité pour les petits et grands
+                animaux. Nous offrons une gamme de services de chirurgie pour
+                assurer le bien-être de votre animal de compagnie.
               </span>
             </Col>
             <Col
@@ -196,56 +206,61 @@ export default function Home() {
               className="d-flex justify-content-between align-items-center align-self-start flex-column text-white w-100 p-3 mb-4"
             >
               <RiHospitalFill size={48} className="mb-2" />
-              <span className="text-center medium-text">
-                Hébergement sûr, confortable et surveillé par des professionnels
-                qualifiés, comprenant de la nourriture, de l'eau, de l'exercice
-                et des médicaments si nécessaire.
+              <span className="text-start light-text">
+                Nous offrons un service de déplacement à domicile pour les
+                animaux de compagnie dans le besoin. Nos vétérinaires peuvent
+                venir chez vous pour effectuer des examens et des traitements,
+                ce qui rend la visite chez le vétérinaire plus facile pour vous
+                et moins stressante pour votre animal.
               </span>
             </Col>
           </Row>
         </Row>
       </Container>
 
-      <Container className="my-5 py-5 h-auto">
-        <Row>
-          <Col
-            sm={8}
-            className="d-flex flex-column justify-content-center align-items-center"
-          >
-            <h1 className="text-center large-text p-2 color-blue">
-              Réservez maintenant !
-            </h1>
-            <p className="light-text text-center my-3 w-75">
-              Notre système de réservation en ligne facile à utiliser rend la
-              prise de rendez-vous pour votre animal de compagnie rapide et sans
-              tracas. Il suffit de sélectionner la date et l'heure souhaitées,
-              de saisir vos informations et nous nous occupons du reste. Avec
-              notre système de réservation pratique, prendre rendez-vous pour
-              votre ami à fourrure n'a jamais été aussi facile.
-            </p>
-            <button
-              className="back-blue align-self-center rounded my-5"
-              onClick={() => {
-                router.push("/reserve");
-              }}
+      <Container className="back-reserve " fluid>
+        <Container className="h-auto">
+          <Row>
+            <Col
+              sm={8}
+              className="d-flex flex-column justify-content-center align-items-center"
             >
-              Effectuez une réservation.
-              <RiArrowRightSLine size={24} />
-            </button>
-          </Col>
-          <Col sm={4}>
-            <Image src="/reserve.png" fluid className="w-100" />
-          </Col>
-        </Row>
+              <h1 className="text-center large-text p-2 color-blue">
+                Réservez maintenant !
+              </h1>
+              <p className="light-text text-center my-3 w-75">
+                Notre système de réservation en ligne facile à utiliser rend la
+                prise de rendez-vous pour votre animal de compagnie rapide et
+                sans tracas. Il suffit de sélectionner la date et l'heure
+                souhaitées, de saisir vos informations et nous nous occupons du
+                reste. Avec notre système de réservation pratique, prendre
+                rendez-vous pour votre ami à fourrure n'a jamais été aussi
+                facile.
+              </p>
+              <button
+                className="back-blue align-self-center rounded my-5"
+                onClick={() => {
+                  router.push("/reserve");
+                }}
+              >
+                Effectuez une réservation.
+                <RiArrowRightSLine size={24} />
+              </button>
+            </Col>
+            <Col sm={4}>
+              <Image src="/reserve.png" fluid className="w-100" />
+            </Col>
+          </Row>
+        </Container>
       </Container>
       <section
-        className="contact-section my-5 py-5"
+        className="contact-section py-5"
         style={{ backgroundColor: "#fffaf5" }}
       >
-        <Carousel className="testimonials-slider back-blue py-5 my-5">
+        <Carousel className="testimonials-slider back-blue py-5">
           {testimonials.map((testimonial) => (
             <Carousel.Item key={testimonial.id} className="my-5">
-              <Container className="my-5">
+              <Container>
                 <Row className="justify-content-center">
                   <Col md={6} className="d-flex flex-column align-items-center">
                     <div className="testimonial-image-container rounded-circle overflow-hidden mb-3">

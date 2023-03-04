@@ -35,7 +35,7 @@ function Header() {
       <Container className="d-flex ">
         <Navbar.Brand>
           <Link href="/">
-            <h3 className="color-blue bolder">ANIMOVET.</h3>
+            <h3 className="color-blue bolder">UMC VET.</h3>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
