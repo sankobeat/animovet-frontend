@@ -1,56 +1,68 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import React from "react";
-import { Button, Row, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Pagination, Row, Table } from "react-bootstrap";
 import { FaCheck, FaTimesCircle } from "react-icons/fa";
 import useSWR, { mutate } from "swr";
 import toast, { Toaster } from "react-hot-toast";
+import { fetcherAuth } from "../../utils/fetcher";
 
-const fetcher = async (token) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const { data } = await axios.get("/api/user/all", config);
-
-  if (!data) {
-    throw new Error("there was an error");
-  }
-  return data;
-};
+// todos
+// update the url page to match the page number
+// if we enter a page in the url, the page should be related to and render the same data related to page number
 
 export default function Users() {
+  const [pageNum, setPageNum] = useState(1);
+
   const token = Cookies.get("token");
 
-  const { data, error, isLoading } = useSWR("fetchAllUsers", () =>
-    fetcher(token)
+  // const { data, error } = useSWR(`http://localhost:5000/api/user/get-users?page=${pageNum}`, () => fetcher());
+  const { error, data, mutate } = useSWR(
+    [`http://localhost:5000/api/user/get-users?page=${pageNum}`, token],
+    ([url, token]) => fetcherAuth(url, token)
   );
 
-  const makeAdmin = async (id) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
+  // pagination logic
 
-      const { data } = await axios.patch(
-        "/api/user/admin/make-admin",
-        { id },
-        config
-      );
+  let items = [];
+  for (let number = 1; number <= data?.pages; number++) {
+    items.push(
+      <Pagination.Item
+        key={number}
+        active={number === pageNum}
+        onClick={() => setPageNum(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
 
-      mutate("fetchAllUsers");
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  };
+  // const { data, error, isLoading } = useSWR("fetchAllUsers", () =>
+  //   fetcher(token)
+  // );
 
-  if (!data) return <h1>Loading</h1>;
+  // const makeAdmin = async (id) => {
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     };
+
+  //     const { data } = await axios.patch(
+  //       "/api/user/admin/make-admin",
+  //       { id },
+  //       config
+  //     );
+
+  //     mutate("fetchAllUsers");
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
+
+  // if (!data) return <h1>Loading</h1>;
 
   return (
     <>
@@ -77,7 +89,7 @@ export default function Users() {
             </tr>
           </thead>
           <tbody>
-            {data?.map((user, index) => (
+            {data?.userToSend.map((user, index) => (
               <tr>
                 <td>{index + 1}</td>
                 <td>{user._id}</td>
@@ -113,6 +125,11 @@ export default function Users() {
             ))}
           </tbody>
         </Table>
+      </Row>
+      <Row>
+        <Col md className="overflow-scroll">
+          <Pagination size="sm">{items}</Pagination>
+        </Col>
       </Row>
     </>
   );
