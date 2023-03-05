@@ -48,7 +48,7 @@ function Profile() {
     };
     try {
       const { data } = await axios.delete(
-        `/api/user//deleteReservation/${id}`,
+        `/api/user/deleteReservation/${id}`,
         config
       );
 
