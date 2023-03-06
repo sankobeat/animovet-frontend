@@ -41,28 +41,28 @@ export default function Users() {
   //   fetcher(token)
   // );
 
-  // const makeAdmin = async (id) => {
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     };
+  const makeAdmin = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-  //     const { data } = await axios.patch(
-  //       "/api/user/admin/make-admin",
-  //       { id },
-  //       config
-  //     );
+      const { data } = await axios.patch(
+        "/api/user/admin/make-admin",
+        { id },
+        config
+      );
 
-  //     mutate("fetchAllUsers");
-  //   } catch (error) {
-  //     toast.error(error.response.data.message);
-  //   }
-  // };
+      mutate("fetchAllUsers");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
-  // if (!data) return <h1>Loading</h1>;
+  if (!data) return <h1>Loading</h1>;
 
   return (
     <>
