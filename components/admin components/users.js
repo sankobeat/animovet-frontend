@@ -51,12 +51,11 @@ export default function Users() {
       };
 
       const { data } = await axios.patch(
-        "/api/user/admin/make-admin",
+        "http://localhost:5000/api/user/admin/make-admin",
         { id },
         config
       );
-
-      mutate("fetchAllUsers");
+      mutate([`/api/user/get-users?page=${page}`, token]);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -89,7 +88,7 @@ export default function Users() {
             </tr>
           </thead>
           <tbody>
-            {data?.userToSend.map((user, index) => (
+            {data?.userToSend?.map((user, index) => (
               <tr>
                 <td>{index + 1}</td>
                 <td>{user._id}</td>

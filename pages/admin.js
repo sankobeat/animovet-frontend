@@ -68,7 +68,9 @@ export default function Admin() {
               <Col md={6}>
                 <p
                   className="m-0 light-text text-center"
-                  onClick={() => setShow("reservations")}
+                  onClick={() => {
+                    router.push("/admin?page=1"), setShow("reservations");
+                  }}
                 >
                   Réservations
                 </p>{" "}

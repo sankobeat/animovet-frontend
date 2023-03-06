@@ -1,34 +1,35 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 import React from "react";
-import { Button, Row, Table } from "react-bootstrap";
+import { Button, Col, Pagination, Row, Table } from "react-bootstrap";
 import { toast, Toaster } from "react-hot-toast";
 import { FaCheck, FaTimesCircle } from "react-icons/fa";
 import useSWR, { mutate } from "swr";
-
-const fetcher = async (token) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const { data } = await axios.get("/api/reservation/all", config);
-
-  if (!data) {
-    throw new Error("there was an error");
-  }
-  return data;
-};
+import { fetcherAuth } from "../../utils/fetcher";
+import { useRouter } from "next/router";
 
 export default function Reservations() {
   const router = useRouter();
   const token = Cookies.get("token");
-  const { data, error, isLoading } = useSWR("fetchAllReservations", () =>
-    fetcher(token)
+  const page = router.query.page;
+
+  const { error, data, mutate } = useSWR(
+    [`/api/reservation/all?page=${page}`, token],
+    ([url, token]) => fetcherAuth(url, token)
   );
+
+  let items = [];
+  for (let number = 1; number <= data?.pages; number++) {
+    items.push(
+      <Pagination.Item
+        key={number}
+        active={number === Number(page)}
+        onClick={() => router.push(`admin?page=${number}`)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
 
   const approveReservation = async (id) => {
     try {
@@ -46,7 +47,7 @@ export default function Reservations() {
       );
 
       toast.success(data);
-      mutate("fetchAllReservations");
+      mutate([`/api/reservatin/all?page=${page}`, token]);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -125,7 +126,7 @@ export default function Reservations() {
             </tr>
           </thead>
           <tbody>
-            {data?.map((reservation, index) => (
+            {data?.reservationToShow?.map((reservation, index) => (
               <tr>
                 <td>{index + 1}</td>
                 <td>{reservation._id}</td>
@@ -210,6 +211,11 @@ export default function Reservations() {
             ))}
           </tbody>
         </Table>
+      </Row>
+      <Row>
+        <Col md className="overflow-scroll">
+          <Pagination size="sm">{items}</Pagination>
+        </Col>
       </Row>
     </>
   );
