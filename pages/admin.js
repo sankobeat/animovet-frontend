@@ -2,13 +2,14 @@ import Messages from "@/components/admin components/messages";
 import Reservations from "@/components/admin components/reservations";
 import Users from "@/components/admin components/users";
 import Header from "@/components/header";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaUsers, FaClock, FaMailBulk, FaDatabase } from "react-icons/fa";
 
 export default function Admin() {
   const [show, setShow] = useState("users");
-
+  const router = useRouter();
   return (
     <>
       <Header />
@@ -48,7 +49,9 @@ export default function Admin() {
               <Col md={6}>
                 <p
                   className="m-0 light-text text-center"
-                  onClick={() => setShow("users")}
+                  onClick={() => {
+                    router.push("/admin?page=1"), setShow("users");
+                  }}
                 >
                   Utilisateurs
                 </p>{" "}

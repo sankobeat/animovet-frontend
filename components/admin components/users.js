@@ -6,6 +6,7 @@ import { FaCheck, FaTimesCircle } from "react-icons/fa";
 import useSWR, { mutate } from "swr";
 import toast, { Toaster } from "react-hot-toast";
 import { fetcherAuth } from "../../utils/fetcher";
+import { useRouter } from "next/router";
 
 // todos
 // update the url page to match the page number
@@ -13,24 +14,23 @@ import { fetcherAuth } from "../../utils/fetcher";
 
 export default function Users() {
   const [pageNum, setPageNum] = useState(1);
-
   const token = Cookies.get("token");
+  const router = useRouter();
+  const page = router.query.page;
 
   // const { data, error } = useSWR(`http://localhost:5000/api/user/get-users?page=${pageNum}`, () => fetcher());
   const { error, data, mutate } = useSWR(
-    [`/api/user/get-users?page=${pageNum}`, token],
+    [`/api/user/get-users?page=${page}`, token],
     ([url, token]) => fetcherAuth(url, token)
   );
-
-  // pagination logic
 
   let items = [];
   for (let number = 1; number <= data?.pages; number++) {
     items.push(
       <Pagination.Item
         key={number}
-        active={number === pageNum}
-        onClick={() => setPageNum(number)}
+        active={number === Number(page)}
+        onClick={() => router.push(`admin?page=${number}`)}
       >
         {number}
       </Pagination.Item>
