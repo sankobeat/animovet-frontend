@@ -51,7 +51,7 @@ export default function Users() {
       };
 
       const { data } = await axios.patch(
-        "http://localhost:5000/api/user/admin/make-admin",
+        "/api/user/admin/make-admin",
         { id },
         config
       );
