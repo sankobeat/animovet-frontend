@@ -11,9 +11,8 @@ export default function Admin() {
   const [show, setShow] = useState("users");
   const router = useRouter();
 
-  const token = Cookies.get("token");
-
   useEffect(() => {
+    const token = Cookies.get("token");
     if (!token) {
       router.push("/");
     }
