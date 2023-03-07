@@ -9,9 +9,11 @@ import { userStore } from "@/state/store";
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Cookies from "js-cookie";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function Register() {
   const storeUser = userStore((state) => state.storeUser);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")).state.user;
@@ -39,15 +41,18 @@ export default function Register() {
       toast.error("Veuillez fournir un mot de passe");
     } else {
       try {
+        setLoading(true);
         const { data } = await axios.post("/api/user/login", form);
         if (data) {
           console.log(data);
           toast.success("You'r Logged In");
           Cookies.set("token", data.token);
           storeUser(data.user);
+          setLoading(false);
           router.push("/");
         }
       } catch (error) {
+        setLoading(false);
         toast.error(error.response.data.message);
       }
     }
@@ -106,7 +111,11 @@ export default function Register() {
                               type="submit"
                               onClick={handleSubmitForm}
                             >
-                              Connexion
+                              {loading ? (
+                                <Spinner animation="border" role="status" />
+                              ) : (
+                                "Connexion"
+                              )}
                             </button>
                           </div>
                         </Form>

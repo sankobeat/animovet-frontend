@@ -6,6 +6,8 @@ import Header from "@/components/header";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { FaCheck, FaTimesCircle } from "react-icons/fa";
 import ReactToPrint from "react-to-print";
+import QRCode from "qrcode.react";
+
 const fetcher = async (url) => {
   const { data } = await axios.get(url);
   if (!data) {
@@ -99,6 +101,11 @@ export default function ReservationDetails() {
         </Table>
         <Row className="text-center my-3">
           <p className="light-text color-blue">Créé à {convertUTCtoGMT()}</p>
+        </Row>
+        <Row className="d-flex justify-content-center">
+          <QRCode
+            value={`https://animovet-frontend-22zz.vercel.app/reservation/${data?._id}`}
+          />
         </Row>
       </Container>
       <Container>
