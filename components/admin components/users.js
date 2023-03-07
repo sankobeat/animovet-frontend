@@ -61,6 +61,10 @@ export default function Users() {
     }
   };
 
+  if (error) {
+    router.push("/");
+  }
+
   if (!data) return <h1>Loading</h1>;
 
   return (
