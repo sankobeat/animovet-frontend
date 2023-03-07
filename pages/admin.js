@@ -2,6 +2,8 @@ import Messages from "@/components/admin components/messages";
 import Reservations from "@/components/admin components/reservations";
 import Users from "@/components/admin components/users";
 import Header from "@/components/header";
+import Cookies from "js-cookie";
+
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -10,9 +12,8 @@ import { FaUsers, FaClock, FaMailBulk, FaDatabase } from "react-icons/fa";
 export default function Admin() {
   const [show, setShow] = useState("users");
   const router = useRouter();
-
+  const token = Cookies.get("token");
   useEffect(() => {
-    const token = Cookies.get("token");
     if (!token) {
       router.push("/");
     }
@@ -42,8 +43,8 @@ export default function Admin() {
               </Col>
               <Col md={6}>
                 <p className="m-0 light-text text-center">
-                  Analyse des données{" "}
-                </p>{" "}
+                  Analyse des données
+                </p>
               </Col>
             </Row>
             <hr className="w-100" />
@@ -62,7 +63,7 @@ export default function Admin() {
                   }}
                 >
                   Utilisateurs
-                </p>{" "}
+                </p>
               </Col>
             </Row>
             <hr className="w-100" />
