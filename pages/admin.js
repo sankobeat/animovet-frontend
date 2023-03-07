@@ -3,13 +3,22 @@ import Reservations from "@/components/admin components/reservations";
 import Users from "@/components/admin components/users";
 import Header from "@/components/header";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaUsers, FaClock, FaMailBulk, FaDatabase } from "react-icons/fa";
 
 export default function Admin() {
   const [show, setShow] = useState("users");
   const router = useRouter();
+
+  const token = Cookies.get("token");
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
+
   return (
     <>
       <Header />
