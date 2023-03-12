@@ -30,10 +30,7 @@ export default function Users() {
 
   // const { data, error } = useSWR(`http://localhost:5000/api/user/get-users?page=${pageNum}`, () => fetcher());
   const { error, data, mutate } = useSWR(
-    [
-      `http://localhost:5000/api/user/get-users?page=${page}&keyword=${keyword}`,
-      token,
-    ],
+    [`/api/user/get-users?page=${page}&keyword=${keyword}`, token],
     ([url, token]) => fetcherAuth(url, token)
   );
 
