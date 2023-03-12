@@ -112,7 +112,9 @@ export default function Register() {
                               onClick={handleSubmitForm}
                             >
                               {loading ? (
-                                <Spinner animation="border" role="status" />
+                                <>
+                                  <Spinner animation="border" role="status" />
+                                </>
                               ) : (
                                 "Connexion"
                               )}

@@ -7,7 +7,7 @@ import { reservationStore, userStore } from "@/state/store";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
 import DatePicker from "react-datepicker";
-
+import Spinner from "react-bootstrap/Spinner";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "@/components/footer";
 const workHours = [
@@ -29,9 +29,8 @@ const workHours = [
 export default function Reserve() {
   const router = useRouter();
   const [userLS, setUserLS] = useState({});
-
+  const [loading, setLoading] = useState(false);
   const user = userStore((state) => state.user);
-  const storeReservation = reservationStore((state) => state.storeReservation);
   const [theDate, setTheDate] = useState("");
   const [reservedHours, setReservedHours] = useState([]);
 
@@ -76,6 +75,7 @@ export default function Reserve() {
     e.preventDefault();
     if (user) {
       try {
+        setLoading(true);
         const { data } = await axios.post("/api/reservation/register", {
           id: user._id,
           petType: form.petType,
@@ -83,19 +83,23 @@ export default function Reserve() {
           reservedDate: theDate,
           reservedTime: form.reservedTime,
         });
+        setLoading(false);
         router.push(`/reservation/${data?._id}`);
       } catch (error) {
+        setLoading(false);
         toast.error(error.response.data.message);
       }
     } else {
       try {
+        setLoading(true);
         const { data } = await axios.post("/api/reservation/register", {
           ...form,
           reservedDate: theDate,
         });
-
+        setLoading(false);
         router.push(`/reservation/${data?._id}`);
       } catch (error) {
+        setLoading(false);
         toast.error(error.response.data.message);
       }
     }
@@ -219,7 +223,11 @@ export default function Reserve() {
                     </div>
                   </div>
                   <button type="submit" className="back-blue">
-                    Envoyer
+                    {loading ? (
+                      <Spinner animation="border" role="status" />
+                    ) : (
+                      "Envoyer"
+                    )}
                   </button>
                 </form>
               ) : (

@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import useSWR from "swr";
 
 const fetcher = async (token) => {
@@ -37,7 +37,7 @@ export default function Messages() {
   };
 
   if (error) return <h1>Sorry, something went wrong</h1>;
-  if (isLoading) return <h1>Loading Messages...</h1>;
+  if (isLoading) return <Spinner animation="border" role="status" />;
 
   return (
     <>

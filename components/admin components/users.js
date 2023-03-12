@@ -1,7 +1,15 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Pagination, Row, Table } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Form,
+  Pagination,
+  Row,
+  Spinner,
+  Table,
+} from "react-bootstrap";
 import { FaCheck, FaTimesCircle } from "react-icons/fa";
 import useSWR, { mutate } from "swr";
 import toast, { Toaster } from "react-hot-toast";
@@ -15,12 +23,17 @@ import { useRouter } from "next/router";
 export default function Users() {
   const [pageNum, setPageNum] = useState(1);
   const token = Cookies.get("token");
+  //const [keyword, setKeyword] = useState("");
   const router = useRouter();
-  const page = router.query.page;
+  const page = router.query.page ? router.query.page : 1;
+  let keyword = router.query.keyword ? router.query.keyword : "";
 
   // const { data, error } = useSWR(`http://localhost:5000/api/user/get-users?page=${pageNum}`, () => fetcher());
   const { error, data, mutate } = useSWR(
-    [`/api/user/get-users?page=${page}`, token],
+    [
+      `http://localhost:5000/api/user/get-users?page=${page}&keyword=${keyword}`,
+      token,
+    ],
     ([url, token]) => fetcherAuth(url, token)
   );
 
@@ -61,11 +74,19 @@ export default function Users() {
     }
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    router.push(`admin?page=${1}&keyword=${keyword}`);
+  };
+  const handleKeywordChange = (e) => {
+    keyword = e.target.value;
+  };
+
   if (error) {
     router.push("/");
   }
 
-  if (!data) return <h1>Loading</h1>;
+  if (!data) return <Spinner animation="border" role="status" />;
 
   return (
     <>
@@ -76,6 +97,29 @@ export default function Users() {
         <h1 className="color-blue bolder text-center my-5 uppercase">
           utilisateurs
         </h1>
+      </Row>
+      <Row>
+        <Col md>
+          <Form
+            onSubmit={handleSearch}
+            className="d-flex justify-content-center mb-4"
+          >
+            <Form.Group className="h-100" controlId="keyword">
+              <Form.Control
+                type="text"
+                placeholder="Search Users"
+                onChange={handleKeywordChange}
+              />
+            </Form.Group>
+            <button
+              variant="primary"
+              className="back-orange py-0"
+              type="submit"
+            >
+              Rechercher
+            </button>
+          </Form>
+        </Col>
       </Row>
       <Row>
         <Table striped bordered hover responsive>

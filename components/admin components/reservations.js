@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React from "react";
-import { Button, Col, Pagination, Row, Table } from "react-bootstrap";
+import { Button, Col, Pagination, Row, Spinner, Table } from "react-bootstrap";
 import { toast, Toaster } from "react-hot-toast";
 import { FaCheck, FaTimesCircle } from "react-icons/fa";
 import useSWR, { mutate } from "swr";
@@ -96,7 +96,8 @@ export default function Reservations() {
     }
   };
 
-  if (!data) return <h1>Loading</h1>;
+  if (!data)
+    return <Spinner animation="border" role="status" className="text-center" />;
 
   return (
     <>
