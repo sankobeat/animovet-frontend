@@ -9,6 +9,8 @@ import { userStore } from "@/state/store";
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Cookies from "js-cookie";
+import io from "socket.io-client";
+
 function isValidDate(year, month, day) {
   const date = new Date(year, month - 1, day);
   return (
@@ -17,17 +19,18 @@ function isValidDate(year, month, day) {
     date.getFullYear() === year
   );
 }
+//const socket = io(`${process.env.NEXT_PUBLIC_LOCAL_HOST_API}`);
+const socket = io(`https://animovet-backend.onrender.com/`);
 
 export default function Register() {
   const router = useRouter();
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")).state.user;
     if (user) {
       router.push(`/`);
     }
   }, []);
-
-  const storeUser = userStore((state) => state.storeUser);
 
   const [birthday, setBirthday] = useState({
     day: "",
@@ -42,6 +45,10 @@ export default function Register() {
     confirmPassword: "",
     phoneNumber: "",
   });
+
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+  };
 
   const handleDateChange = (e) => {
     setBirthday({
@@ -80,13 +87,23 @@ export default function Register() {
           birthday: `${birthday.day}-${birthday.month}-${birthday.year}`,
         });
         if (data) {
+          await axios.post("/api/admin/notification", {
+            notificationType: "register",
+            name: data.user.name,
+            senderId: data.user._id,
+          });
+          socket.emit("userRegister", {
+            id: data.user._id,
+            name: data.user.name,
+            notificationType: "register",
+          });
           toast.success("Registration Validated");
           storeUser(data.user);
           Cookies.set("token", data.token);
           router.push("/");
         }
       } catch (error) {
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data.message);
       }
     }
   };
@@ -217,6 +234,7 @@ export default function Register() {
                             </button>
                           </div>
                         </Form>
+
                         <div className="mt-3">
                           <p className="mb-0  text-center">
                             Avez-vous déjà un compte ?

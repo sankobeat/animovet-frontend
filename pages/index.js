@@ -30,7 +30,7 @@ import {
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import toast, { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const testimonials = [
@@ -82,6 +82,8 @@ export default function Home() {
       toast.error(error.response.data.message);
     }
   };
+
+  // Socket Io
 
   return (
     <>

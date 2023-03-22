@@ -40,7 +40,7 @@ export default function Users() {
       <Pagination.Item
         key={number}
         active={number === Number(page)}
-        onClick={() => router.push(`admin?page=${number}`)}
+        onClick={() => router.push(`admin?page=${number}&keyword=${keyword}`)}
       >
         {number}
       </Pagination.Item>
