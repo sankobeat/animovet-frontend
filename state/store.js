@@ -24,7 +24,6 @@ export const userStore = create(
   persist(
     (set, get) => ({
       user: null,
-      token: null,
       reservationHistory: [],
       storeUser: (data) => set(() => ({ user: data })),
 

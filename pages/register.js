@@ -20,11 +20,11 @@ function isValidDate(year, month, day) {
   );
 }
 //const socket = io(`${process.env.NEXT_PUBLIC_LOCAL_HOST_API}`);
-const socket = io(`https://animovet-backend.onrender.com/`);
+const socket = io(`https://animovet-backend.onrender.com`);
 
 export default function Register() {
   const router = useRouter();
-
+  const storeUser = userStore((state) => state.storeUser);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")).state.user;
     if (user) {
@@ -82,10 +82,13 @@ export default function Register() {
       toast.error("Please enter a valid date");
     } else {
       try {
-        const { data } = await axios.post("/api/user/registration", {
-          ...form,
-          birthday: `${birthday.day}-${birthday.month}-${birthday.year}`,
-        });
+        const { data } = await axios.post(
+          "http://localhost:5000/api/user/registration",
+          {
+            ...form,
+            birthday: `${birthday.day}-${birthday.month}-${birthday.year}`,
+          }
+        );
         if (data) {
           await axios.post("/api/admin/notification", {
             notificationType: "register",
