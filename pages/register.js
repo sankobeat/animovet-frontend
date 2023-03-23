@@ -82,13 +82,10 @@ export default function Register() {
       toast.error("Please enter a valid date");
     } else {
       try {
-        const { data } = await axios.post(
-          "http://localhost:5000/api/user/registration",
-          {
-            ...form,
-            birthday: `${birthday.day}-${birthday.month}-${birthday.year}`,
-          }
-        );
+        const { data } = await axios.post("/api/user/registration", {
+          ...form,
+          birthday: `${birthday.day}-${birthday.month}-${birthday.year}`,
+        });
         if (data) {
           await axios.post("/api/admin/notification", {
             notificationType: "register",
