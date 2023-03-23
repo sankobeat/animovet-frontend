@@ -97,11 +97,10 @@ export default function Register() {
             name: data.user.name,
             notificationType: "register",
           });
-          toast.success("Registration Validated");
           storeUser(data.user);
           Cookies.set("token", data.token);
-          router.push("/");
         }
+        router.push("/");
       } catch (error) {
         toast.error(error.response?.data.message);
       }
